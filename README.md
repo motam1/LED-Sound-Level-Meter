@@ -18,7 +18,7 @@ Unfortunately, the Arduino is unable to output DC analog signals; it instead use
 f_c = \frac{1}{2\pi C R}
 \]
 
-Next, I needed to turn on different LEDs at varying voltage values. To achieve this, I used NPN transistors as switches. Each LED was connected to the collector of its respective transistor. The LED will turn on when the voltage at the base exceeds the cutoff voltage (\(>V_{be(on)}\)). I created different voltage division ratios for each base and connected them to the analog input. This setup causes the voltage at the base of each transistor to vary based on the voltage division ratio, resulting in the switches closing at different input voltage levels and achieving the desired functionality.
+Next, I needed to turn on different LEDs at varying voltage values. To achieve this, I used NPN transistors as switches. Each LED was connected to the collector of its respective transistor. The LED will turn on when the voltage at the base exceeds the cutoff voltage (>Vbeon). I created different voltage division ratios for each base and connected them to the analog input. This setup causes the voltage at the base of each transistor to vary based on the voltage division ratio, resulting in the switches closing at different input voltage levels and achieving the desired functionality.
 
 ## Materials Used
 
