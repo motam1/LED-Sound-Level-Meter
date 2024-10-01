@@ -1,7 +1,6 @@
 import pyaudio
 import serial
 import time
-import numpy as np
 import audioop
 
 # Audio settings
@@ -28,17 +27,20 @@ stream = audio.open(format=FORMAT, channels=CHANNELS, rate=RATE, input=True, fra
 
 try:
     while True:  
-        data = stream.read(FPB) 
+        
+        data = stream.read(FPB) # Read data from the stream
 
-        # Convert data (get RMS, normalize and scale)
-        rms = audioop.rms(data,2) 
-        normalized_rms = rms/32768 
-        scaled_magnitude = int(normalized_rms*255)
-
+       
+        rms = audioop.rms(data,2)  # Get root mean square (common measure of volume level)
+        normalized_rms = rms/32768 # Max value of RMS is 32768 (signed 16-bit integer)
+        print("volume is " + str(int(normalized_rms*100)) + "%")
+        scaled_magnitude = int(normalized_rms*255) # PWM takes values 0-255
+        
         # Send the value to Arduino via serial communication
         serial_com.write(bytes([scaled_magnitude]))
 
         time.sleep(0.01)
+
 except KeyboardInterrupt:
     print("Audio capturing stopped.")
 

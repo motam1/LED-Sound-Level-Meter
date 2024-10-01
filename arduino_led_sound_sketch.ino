@@ -1,8 +1,9 @@
-int pwmPin = 9; // PWM pin
+int pwmPin = 5; // PWM pin
 
 void setup() {
-  Serial.begin(9600);
-  pinMode(pwmPin, OUTPUT);
+  Serial.begin(9600); // Initialize serial communication 
+  TCCR0B = TCCR0B & 0b11111000 | 0x01; // Sets prescalar to 1 to maximize PWM frequency (62.5 kHz)
+  pinMode(pwmPin, OUTPUT); // Set pin as output
 }
 
 void loop() {
